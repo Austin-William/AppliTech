@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+.vscode/
 
 # IntelliJ related
 *.iml
@@ -27,6 +28,7 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+pubspec.lock
 .pub-cache/
 .pub/
 /build/

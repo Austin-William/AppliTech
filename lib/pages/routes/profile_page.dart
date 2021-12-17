@@ -4,10 +4,10 @@ class ProfilPage extends StatefulWidget {
   const ProfilPage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _HomePageState extends State<ProfilPage> {
+class _ProfilePageState extends State<ProfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

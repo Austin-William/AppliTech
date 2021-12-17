@@ -4,10 +4,10 @@ class NotificationsPage extends StatefulWidget {
   const NotificationsPage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _CalendarPageState createState() => _CalendarPageState();
 }
 
-class _HomePageState extends State<NotificationsPage> {
+class _CalendarPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

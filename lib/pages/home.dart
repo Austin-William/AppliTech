@@ -1,9 +1,12 @@
 import 'package:applitech/pages/routes/calendar_page.dart';
 import 'package:applitech/pages/routes/home_page.dart';
+import 'package:applitech/pages/routes/module_page.dart';
 import 'package:applitech/pages/routes/notifications_page.dart';
-import 'package:applitech/pages/routes/profil_page.dart';
+import 'package:applitech/pages/routes/profile_page.dart';
+import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/components/appbar.dart';
+import 'package:applitech/components/drawer.dart';
 
 // Affiche la page d'accueil avec les tabview
 
@@ -30,8 +33,9 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.grey[900], // couleur de fond
       appBar: const CustomAppBar(
-        title: 'Applitech',
+        title: 'Epitech',
       ),
+      drawer: const CustomDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType
             .fixed, // barre de navigation fixe, si 'fixed' changed to 'shifting' => barre de nav devient blanche
@@ -59,7 +63,7 @@ class _HomeState extends State<Home> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home,
+              Icons.home_filled,
               color: Colors.grey,
             ),
             label: "Accueil",
@@ -73,17 +77,17 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.notifications,
+              Icons.timeline,
               color: Colors.grey,
             ),
-            label: "Notifications",
+            label: "Projets",
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.account_circle_outlined,
+              Icons.label_important,
               color: Colors.grey,
             ),
-            label: "Profil",
+            label: "Modules",
           ),
         ],
       ),
@@ -102,10 +106,10 @@ class _HomeState extends State<Home> {
             child: CalendarPage(),
           ),
           Center(
-            child: NotificationsPage(),
+            child: ProjectsPage(),
           ),
           Center(
-            child: ProfilPage(),
+            child: ModulePage(),
           ),
         ],
       ),

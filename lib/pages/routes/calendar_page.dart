@@ -4,10 +4,10 @@ class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _CalendarPageState createState() => _CalendarPageState();
 }
 
-class _HomePageState extends State<CalendarPage> {
+class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
