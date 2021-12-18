@@ -1,7 +1,3 @@
-import 'package:applitech/pages/routes/calendar_page.dart';
-import 'package:applitech/pages/routes/home_page.dart';
-import 'package:applitech/pages/routes/module_page.dart';
-import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/components/appbar.dart';
 import 'package:applitech/components/drawer.dart';
@@ -16,98 +12,50 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int nbIndex = 0;
-  PageController? pageController;
-  @override
-  void initState() {
-    pageController = PageController(
-      initialPage: nbIndex,
-    );
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900], // couleur de fond
       appBar: const CustomAppBar(
         title: 'Profil',
       ),
       drawer: const CustomDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType
-            .fixed, // barre de navigation fixe, si 'fixed' changed to 'shifting' => barre de nav devient blanche
-        currentIndex: nbIndex,
-        backgroundColor: Colors.white12,
-        iconSize: 18,
-        selectedIconTheme: const IconThemeData(
-          color: Colors
-              .amberAccent, // change pas de couleur avec plus de 4 tabs => bug de Flutter d'après Github
-          size: 26,
-        ),
-        elevation: 0,
-        showSelectedLabels: true,
-        showUnselectedLabels: false, // set a true pour afficher les labels
-        selectedFontSize: 12,
-        selectedItemColor: Colors.amberAccent,
-        selectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-        onTap: (index) {
-          pageController!.animateToPage(index,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.easeInOut);
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-              color: Colors.grey,
-            ),
-            label: "Accueil",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.calendar_today,
-              color: Colors.grey,
-            ),
-            label: "Calendrier",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.timeline,
-              color: Colors.grey,
-            ),
-            label: "Projets",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.label_important,
-              color: Colors.grey,
-            ),
-            label: "Modules",
-          ),
-        ],
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (page) {
-          setState(() {
-            nbIndex = page;
-          });
-        },
+      body: ListView(
         children: const <Widget>[
-          Center(
-            child: HomePage(),
+          Card(
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.timelapse),
+              title: Text('Temps de connexion'),
+              subtitle: Text('2 heures'),
+            ),
+            shadowColor: Colors.grey,
           ),
-          Center(
-            child: CalendarPage(),
+          Card(
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.person_off),
+              title: Text('Absences'),
+              subtitle: Text('2 absences'),
+            ),
+            shadowColor: Colors.grey,
           ),
-          Center(
-            child: ProjectsPage(),
+          Card(
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.flag_sharp),
+              title: Text('Flags'),
+              subtitle: Text('2 flags'),
+            ),
+            shadowColor: Colors.grey,
           ),
-          Center(
-            child: ModulePage(),
+          Card(
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.person_pin_circle_rounded),
+              title: Text('Binômes'),
+              subtitle: Text('2 binômes'),
+            ),
+            shadowColor: Colors.grey,
           ),
         ],
       ),

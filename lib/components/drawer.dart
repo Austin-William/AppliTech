@@ -70,35 +70,42 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: const Icon(Icons.home),
             title: const Text("Accueil"),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/home');
+              Navigator.of(context).popAndPushNamed('/home');
             },
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text("Profil"),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/profile');
+              Navigator.of(context).popAndPushNamed('/profile');
             },
           ),
           ListTile(
             leading: const Icon(Icons.notes),
             title: const Text("Notes"),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/notes');
+              Navigator.of(context).popAndPushNamed('/notes');
             },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text("Paramètres"),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/settings');
+              Navigator.of(context).popAndPushNamed('/settings');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.help),
+            title: const Text("Aide"),
+            onTap: () {
+              Navigator.of(context).popAndPushNamed('/help');
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text("Se déconnecter"),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/login');
+              Navigator.of(context).popAndPushNamed('/login');
             },
           ),
         ],

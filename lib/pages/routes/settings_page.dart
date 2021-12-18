@@ -16,98 +16,55 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  int nbIndex = 0;
-  PageController? pageController;
-  @override
-  void initState() {
-    pageController = PageController(
-      initialPage: nbIndex,
-    );
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900], // couleur de fond
+      // couleur de fond
       appBar: const CustomAppBar(
         title: 'Paramètres',
       ),
       drawer: const CustomDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType
-            .fixed, // barre de navigation fixe, si 'fixed' changed to 'shifting' => barre de nav devient blanche
-        currentIndex: nbIndex,
-        backgroundColor: Colors.white12,
-        iconSize: 18,
-        selectedIconTheme: const IconThemeData(
-          color: Colors
-              .amberAccent, // change pas de couleur avec plus de 4 tabs => bug de Flutter d'après Github
-          size: 26,
-        ),
-        elevation: 0,
-        showSelectedLabels: true,
-        showUnselectedLabels: false, // set a true pour afficher les labels
-        selectedFontSize: 12,
-        selectedItemColor: Colors.amberAccent,
-        selectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-        onTap: (index) {
-          pageController!.animateToPage(index,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.easeInOut);
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-              color: Colors.grey,
-            ),
-            label: "Accueil",
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Accueil'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.calendar_today,
-              color: Colors.grey,
-            ),
-            label: "Calendrier",
+          ListTile(
+            leading: Icon(Icons.calendar_today),
+            title: Text('Calendrier'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CalendarPage()),
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.timeline,
-              color: Colors.grey,
-            ),
-            label: "Projets",
+          ListTile(
+            leading: Icon(Icons.folder),
+            title: Text('Modules'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ModulePage()),
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.label_important,
-              color: Colors.grey,
-            ),
-            label: "Modules",
-          ),
-        ],
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (page) {
-          setState(() {
-            nbIndex = page;
-          });
-        },
-        children: const <Widget>[
-          Center(
-            child: HomePage(),
-          ),
-          Center(
-            child: CalendarPage(),
-          ),
-          Center(
-            child: ProjectsPage(),
-          ),
-          Center(
-            child: ModulePage(),
+          ListTile(
+            leading: Icon(Icons.folder),
+            title: Text('Projets'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProjectsPage()),
+              );
+            },
           ),
         ],
       ),
