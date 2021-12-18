@@ -47,7 +47,7 @@ class _HelpPageState extends State<HelpPage> {
               'Développé par :',
             ),
             const SizedBox(
-              height: 16,
+              height: 20,
             ),
             // Copier cette partie pour ajouter votre nom, j'ai la flemme de chercher dans vos Github
             Row(
