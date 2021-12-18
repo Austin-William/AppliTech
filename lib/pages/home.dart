@@ -5,6 +5,7 @@ import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/components/appbar.dart';
 import 'package:applitech/components/drawer.dart';
+import 'package:applitech/global/variables.dart' as global;
 
 // Affiche la page d'accueil avec les tabview
 

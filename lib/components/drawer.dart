@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:applitech/global/variables.dart' as global;
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -105,6 +106,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: const Icon(Icons.exit_to_app),
             title: const Text("Se déconnecter"),
             onTap: () {
+              global.isLoggedIn = false;
               Navigator.of(context).popAndPushNamed('/login');
             },
           ),

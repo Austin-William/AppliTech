@@ -17,7 +17,7 @@ class AppliTech extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => const Home(),
+        '/': (context) => const Login(),
         '/login': (context) => const Login(),
         '/home': (context) => const Home(),
         '/notes': (context) => const NotesPage(),

@@ -1,10 +1,7 @@
-import 'package:applitech/pages/routes/calendar_page.dart';
-import 'package:applitech/pages/routes/home_page.dart';
-import 'package:applitech/pages/routes/module_page.dart';
-import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/components/appbar.dart';
 import 'package:applitech/components/drawer.dart';
+import 'package:applitech/global/variables.dart' as global;
 
 // Affiche la page d'accueil avec les tabview
 
@@ -27,44 +24,49 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Accueil'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
+            leading: const Icon(Icons.light_mode_outlined),
+            title: SwitchListTile(
+              title: const Text('Mode sombre'),
+              value: global.isThemeDark,
+              onChanged: (bool value) {
+                setState(
+                  () {
+                    global.isThemeDark = value;
+                  },
+                );
+              },
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.calendar_today),
-            title: Text('Calendrier'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CalendarPage()),
-              );
-            },
+          const SizedBox(
+            height: 20,
           ),
-          ListTile(
-            leading: Icon(Icons.folder),
-            title: Text('Modules'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ModulePage()),
-              );
-            },
+          const ListTile(
+            leading: Icon(Icons.language_outlined),
+            title: Text('Langue'),
+            subtitle: Text('Français'),
           ),
-          ListTile(
-            leading: Icon(Icons.folder),
-            title: Text('Projets'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProjectsPage()),
-              );
-            },
+          const Center(
+            child: Text(
+              'Les modifications prendront effet après changement de page',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Text(
+              'Version ${global.version}',
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ),
         ],
       ),
