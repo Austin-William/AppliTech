@@ -1,8 +1,6 @@
 import 'package:applitech/pages/routes/calendar_page.dart';
 import 'package:applitech/pages/routes/home_page.dart';
 import 'package:applitech/pages/routes/module_page.dart';
-import 'package:applitech/pages/routes/notifications_page.dart';
-import 'package:applitech/pages/routes/profile_page.dart';
 import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/components/appbar.dart';
@@ -44,7 +42,7 @@ class _HomeState extends State<Home> {
         iconSize: 18,
         selectedIconTheme: const IconThemeData(
           color: Colors
-              .amberAccent, // change pas de couleur parce que plus de 4 tabs => bug de Flutter d'après Github
+              .amberAccent, // change pas de couleur avec plus de 4 tabs => bug de Flutter d'après Github
           size: 26,
         ),
         elevation: 0,

@@ -8,14 +8,14 @@ import 'package:applitech/components/drawer.dart';
 
 // Affiche la page d'accueil avec les tabview
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _SettingsPageState extends State<SettingsPage> {
   int nbIndex = 0;
   PageController? pageController;
   @override
@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.grey[900], // couleur de fond
       appBar: const CustomAppBar(
-        title: 'Profil',
+        title: 'Paramètres',
       ),
       drawer: const CustomDrawer(),
       bottomNavigationBar: BottomNavigationBar(

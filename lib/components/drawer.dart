@@ -1,4 +1,3 @@
-import 'package:applitech/pages/routes/home_page.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -69,30 +68,37 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           ListTile(
             leading: const Icon(Icons.home),
-            title: const Text("Home"),
+            title: const Text("Accueil"),
             onTap: () {
-              Navigator.of(context).popAndPushNamed('/home');
+              Navigator.of(context).pushReplacementNamed('/home');
             },
           ),
           ListTile(
             leading: const Icon(Icons.person),
+            title: const Text("Profil"),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/profile');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.notes),
             title: const Text("Notes"),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed('/notes');
             },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text("Paramètres"),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed('/settings');
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text("Se déconnecter"),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed('/login');
             },
           ),
         ],
