@@ -114,7 +114,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             title: const Text("Se déconnecter"),
             onTap: () {
               global.isLoggedIn = false;
-              Navigator.of(context).popAndPushNamed('/login');
+              Navigator.of(context).popAndPushNamed('/applitech');
             },
           ),
         ],

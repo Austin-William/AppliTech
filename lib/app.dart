@@ -71,9 +71,10 @@ class _AppliTechState extends State<AppliTech> {
             ),
           ],
         ),
-        body: const Login(),
+        body: global.isLoggedIn ? const Home() : const Login(),
       ),
       routes: {
+        '/applitech': (context) => const AppliTech(),
         '/login': (context) => const Login(),
         '/home': (context) => const Home(),
         '/notes': (context) => const NotesPage(),
