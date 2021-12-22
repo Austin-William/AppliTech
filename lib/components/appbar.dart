@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:applitech/global/variables.dart' as global;
 
 // Appbar personnalisé en tant que component pour pouvoir l'implémenter partout
 
@@ -27,9 +25,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
       leading: Builder(
         builder: (context) {
           return IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
-              color: global.isThemeDark ? Colors.white : Colors.black,
             ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           );
@@ -37,23 +34,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       title: Text(
         widget.title,
-        style: TextStyle(
-          color: global.isThemeDark ? Colors.white : Colors.black,
+        style: const TextStyle(
           fontSize: 18,
         ),
       ),
       centerTitle: true,
       elevation: 0,
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor:
-            global.isThemeDark ? Colors.transparent : Colors.black12,
-        statusBarIconBrightness:
-            global.isThemeDark ? Brightness.light : Brightness.dark,
-        statusBarBrightness:
-            global.isThemeDark ? Brightness.light : Brightness.dark,
-      ),
-      backgroundColor: global.isThemeDark ? Colors.black : Colors.white,
-      shadowColor: global.isThemeDark ? Colors.white : Colors.black,
     );
   }
 }

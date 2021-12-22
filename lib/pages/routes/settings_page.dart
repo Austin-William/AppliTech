@@ -47,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           const Center(
             child: Text(
-              'Les modifications prendront effet après changement de page',
+              'Les modifications prendront effet après redémarrage de l\'application',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey,

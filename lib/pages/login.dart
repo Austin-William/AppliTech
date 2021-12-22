@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Container(
@@ -33,44 +33,47 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               constraints: const BoxConstraints.expand(),
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35),
-                      topRight: Radius.circular(35))),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35),
+                  topRight: Radius.circular(35),
+                ),
+              ),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                  ),
                   const SizedBox(
                     height: 16,
                   ),
                   TextField(
                     controller: emailController,
                     onChanged: (value) {
-                      setState(() {
-                        // print(value);
-                      });
+                      setState(
+                        () {
+                          // print(value);
+                        },
+                      );
                     },
                     decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.mail),
-                        suffixIcon: emailController.text.isEmpty
-                            ? const Text('')
-                            : GestureDetector(
-                                onTap: () {
-                                  emailController.clear();
-                                },
-                                child: const Icon(Icons.close)),
-                        hintText: 'example@epitech.eu',
-                        labelText: 'Email',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                const BorderSide(color: Colors.red, width: 1))),
+                      prefixIcon: const Icon(Icons.mail),
+                      suffixIcon: emailController.text.isEmpty
+                          ? const Text('')
+                          : GestureDetector(
+                              onTap: () {
+                                emailController.clear();
+                              },
+                              child: const Icon(
+                                Icons.close,
+                              ),
+                            ),
+                      hintText: 'example@epitech.eu',
+                      labelText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 1,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 16,
@@ -82,21 +85,28 @@ class _LoginState extends State<Login> {
                       // print(value);
                     },
                     decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: GestureDetector(
-                            onTap: () {
-                              isVisible = !isVisible;
-                              setState(() {});
-                            },
-                            child: Icon(isVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off)),
-                        hintText: 'Password',
-                        labelText: 'Password',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                const BorderSide(color: Colors.red, width: 1))),
+                      prefixIcon: const Icon(
+                        Icons.lock,
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          isVisible = !isVisible;
+                          setState(() {});
+                        },
+                        child: Icon(
+                          isVisible ? Icons.visibility : Icons.visibility_off,
+                        ),
+                      ),
+                      hintText: 'Password',
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 1,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 16,
@@ -137,6 +147,9 @@ class _LoginState extends State<Login> {
                           EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       child: Text('Submit'),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 16,
                   ),
                 ],
               ),
