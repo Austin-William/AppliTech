@@ -18,7 +18,6 @@ class AppliTech extends StatefulWidget {
 class _AppliTechState extends State<AppliTech> {
   ThemeData darkTheme = ThemeData(
     shadowColor: Colors.amberAccent,
-    accentColor: Colors.amber,
     brightness: Brightness.dark,
     primaryColor: Colors.amber,
     scaffoldBackgroundColor: Colors.grey[900],
@@ -29,12 +28,25 @@ class _AppliTechState extends State<AppliTech> {
     ),
     textSelectionTheme:
         const TextSelectionThemeData(selectionColor: Colors.amber),
+    colorScheme: const ColorScheme.dark(
+      primary: Colors.amber,
+      primaryVariant: Colors.amberAccent,
+      secondary: Colors.amberAccent,
+      secondaryVariant: Colors.amber,
+      surface: Colors.amber,
+      background: Colors.amber,
+      error: Colors.red,
+      onPrimary: Colors.black,
+      onSecondary: Colors.black,
+      onSurface: Colors.black,
+      onBackground: Colors.black,
+      onError: Colors.black,
+      brightness: Brightness.dark,
+    ),
   );
 
   ThemeData lightTheme = ThemeData(
     shadowColor: Colors.black12,
-    accentColor: Colors.white,
-    brightness: Brightness.light,
     primaryColor: Colors.white,
     scaffoldBackgroundColor: Colors.grey[200],
     backgroundColor: Colors.white,
@@ -46,6 +58,21 @@ class _AppliTechState extends State<AppliTech> {
     ),
     textSelectionTheme:
         const TextSelectionThemeData(selectionColor: Colors.blue),
+    colorScheme: const ColorScheme.light(
+      primary: Colors.blue,
+      primaryVariant: Colors.blueAccent,
+      secondary: Colors.blue,
+      secondaryVariant: Colors.blueAccent,
+      surface: Colors.white,
+      background: Colors.white,
+      error: Colors.red,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: Colors.black,
+      onBackground: Colors.black,
+      onError: Colors.white,
+      brightness: Brightness.light,
+    ),
   );
 
   @override
