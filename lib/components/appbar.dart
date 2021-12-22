@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-// Appbar personnalisé en tant que component pour pouvoir l'implémenter partout
+import 'package:applitech/global/variables.dart' as global;
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -39,7 +38,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
         ),
       ),
       centerTitle: true,
-      elevation: 0,
+      elevation: 4,
+      shadowColor: global.isThemeDark ? Colors.grey[900] : Colors.grey[200],
     );
   }
 }

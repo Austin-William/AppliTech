@@ -27,6 +27,8 @@ class _AppliTechState extends State<AppliTech> {
       textTheme: ButtonTextTheme.primary,
       disabledColor: Colors.grey,
     ),
+    textSelectionTheme:
+        const TextSelectionThemeData(selectionColor: Colors.amber),
   );
 
   ThemeData lightTheme = ThemeData(
@@ -36,11 +38,14 @@ class _AppliTechState extends State<AppliTech> {
     primaryColor: Colors.white,
     scaffoldBackgroundColor: Colors.grey[200],
     backgroundColor: Colors.white,
+    selectedRowColor: Colors.blueAccent,
     buttonTheme: const ButtonThemeData(
       buttonColor: Colors.blue,
       textTheme: ButtonTextTheme.primary,
       disabledColor: Colors.grey,
     ),
+    textSelectionTheme:
+        const TextSelectionThemeData(selectionColor: Colors.blue),
   );
 
   @override
@@ -49,6 +54,7 @@ class _AppliTechState extends State<AppliTech> {
       title: 'AppliTech',
       theme: global.isThemeDark ? darkTheme : lightTheme,
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
           title: const Text('AppliTech'),

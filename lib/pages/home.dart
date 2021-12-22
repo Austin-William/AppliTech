@@ -30,7 +30,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900], // couleur de fond
       appBar: const CustomAppBar(
         title: 'Epitech',
       ),
@@ -41,16 +40,19 @@ class _HomeState extends State<Home> {
         currentIndex: nbIndex,
         backgroundColor: Colors.white12,
         iconSize: 18,
-        selectedIconTheme: const IconThemeData(
-          color: Colors
-              .amberAccent, // change pas de couleur avec plus de 4 tabs => bug de Flutter d'après Github
+        selectedIconTheme: IconThemeData(
+          color: global.isThemeDark
+              ? Colors.amberAccent
+              : Colors
+                  .blue, // change pas de couleur avec plus de 4 tabs => bug de Flutter d'après Github
           size: 26,
         ),
         elevation: 0,
         showSelectedLabels: true,
-        showUnselectedLabels: false, // set a true pour afficher les labels
+        showUnselectedLabels: false, // set à true pour afficher les labels
         selectedFontSize: 12,
-        selectedItemColor: Colors.amberAccent,
+        selectedItemColor:
+            global.isThemeDark ? Colors.amberAccent : Colors.blue,
         selectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -63,28 +65,24 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_filled,
-              color: Colors.grey,
             ),
             label: "Accueil",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.calendar_today,
-              color: Colors.grey,
             ),
             label: "Calendrier",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.timeline,
-              color: Colors.grey,
             ),
             label: "Projets",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.label_important,
-              color: Colors.grey,
             ),
             label: "Modules",
           ),

@@ -18,8 +18,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
           SizedBox(
             height: 300,
             child: DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.blue,
+              decoration: BoxDecoration(
+                color: global.isThemeDark ? Colors.amber : Colors.blue,
+                boxShadow: [
+                  BoxShadow(
+                    color: global.isThemeDark ? Colors.grey : Colors.blueGrey,
+                    blurRadius: 8,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
               ),
               padding: EdgeInsets.zero,
               curve: Curves.easeIn,
@@ -32,35 +39,35 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       borderRadius: BorderRadius.circular(8),
                       child: const Image(
                         image: NetworkImage(
-                          'https://avatars2.githubusercontent.com/u/17098477?s=460&v=4',
+                          'https://picsum.photos/250?image=9',
                         ),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Firstname Lastname',
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
+                      color: global.isThemeDark ? Colors.black : Colors.white,
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'example@epitech.eu',
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 16,
+                      color: global.isThemeDark ? Colors.black : Colors.white,
                     ),
                   ),
                   const SizedBox(height: 15),
-                  const Text(
+                  Text(
                     "120 " "credits",
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 16,
+                      color: global.isThemeDark ? Colors.black : Colors.white,
                     ),
                   ),
                 ],
