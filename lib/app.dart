@@ -1,4 +1,3 @@
-import 'package:applitech/components/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/pages/home.dart';
 import 'package:applitech/pages/login.dart';
