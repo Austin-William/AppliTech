@@ -5,6 +5,7 @@ import 'package:applitech/pages/routes/notes_page.dart';
 import 'package:applitech/pages/routes/settings_page.dart';
 import 'package:applitech/pages/routes/profile_page.dart';
 import 'package:applitech/pages/routes/help_page.dart';
+import 'package:applitech/api/microsoft.dart';
 import 'package:applitech/global/variables.dart' as global;
 
 class AppliTech extends StatefulWidget {
@@ -107,6 +108,7 @@ class _AppliTechState extends State<AppliTech> {
         '/settings': (context) => const SettingsPage(),
         '/profile': (context) => const ProfilePage(),
         '/help': (context) => const HelpPage(),
+        '/webview': (context) => const MicrosoftWebview(),
       },
     );
   }

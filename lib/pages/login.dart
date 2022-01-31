@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:applitech/global/variables.dart' as global;
 
 class Login extends StatefulWidget {
@@ -147,6 +148,17 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(
                   height: 16,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/webview');
+                  },
+                  icon: const FaIcon(
+                    FontAwesomeIcons.microsoft,
+                  ),
+                  label: const Text(
+                    "Connect with Microsoft",
+                  ),
                 ),
               ],
             ),
