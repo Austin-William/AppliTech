@@ -30,9 +30,7 @@ class _AppliTechState extends State<AppliTech> {
         const TextSelectionThemeData(selectionColor: Colors.amber),
     colorScheme: const ColorScheme.dark(
       primary: Colors.amber,
-      primaryVariant: Colors.amberAccent,
       secondary: Colors.amberAccent,
-      secondaryVariant: Colors.amber,
       surface: Colors.amber,
       background: Colors.amber,
       error: Colors.red,
@@ -60,9 +58,7 @@ class _AppliTechState extends State<AppliTech> {
         const TextSelectionThemeData(selectionColor: Colors.blue),
     colorScheme: const ColorScheme.light(
       primary: Colors.blue,
-      primaryVariant: Colors.blueAccent,
       secondary: Colors.blue,
-      secondaryVariant: Colors.blueAccent,
       surface: Colors.white,
       background: Colors.white,
       error: Colors.red,
