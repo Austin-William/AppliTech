@@ -1,6 +1,7 @@
 import 'package:applitech/app.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const AppliTech());
 }

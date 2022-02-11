@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/pages/home.dart';
 import 'package:applitech/pages/login.dart';
@@ -5,7 +7,6 @@ import 'package:applitech/pages/routes/notes_page.dart';
 import 'package:applitech/pages/routes/settings_page.dart';
 import 'package:applitech/pages/routes/profile_page.dart';
 import 'package:applitech/pages/routes/help_page.dart';
-import 'package:applitech/api/microsoft.dart';
 import 'package:applitech/global/variables.dart' as global;
 
 class AppliTech extends StatefulWidget {
@@ -71,30 +72,45 @@ class _AppliTechState extends State<AppliTech> {
     ),
   );
 
+  final Future<FirebaseApp> fbApp = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AppliTech',
       theme: global.isThemeDark ? darkTheme : lightTheme,
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('AppliTech'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.brightness_6),
-              onPressed: () {
-                setState(
-                  () {
-                    global.isThemeDark = !global.isThemeDark;
-                  },
-                );
-              },
-            ),
-          ],
-        ),
-        body: global.isLoggedIn ? const Home() : const Login(),
+      home: FutureBuilder(
+        future: fbApp,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            return Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: AppBar(
+                centerTitle: true,
+                title: const Text('AppliTech'),
+                actions: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.brightness_6),
+                    onPressed: () {
+                      setState(
+                        () {
+                          global.isThemeDark = !global.isThemeDark;
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+              body: global.isLoggedIn ? const Home() : const Login(),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
       routes: {
         '/applitech': (context) => const AppliTech(),
@@ -104,7 +120,6 @@ class _AppliTechState extends State<AppliTech> {
         '/settings': (context) => const SettingsPage(),
         '/profile': (context) => const ProfilePage(),
         '/help': (context) => const HelpPage(),
-        '/webview': (context) => const MicrosoftWebview(),
       },
     );
   }

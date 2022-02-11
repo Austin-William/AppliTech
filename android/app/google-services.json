@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "646419448425",
+    "project_id": "applitech-f148d",
+    "storage_bucket": "applitech-f148d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646419448425:android:37697c872870f7c5b018f8",
+        "android_client_info": {
+          "package_name": "com.example.applitech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646419448425-6tlg5aeaie9ij2c9rslknf1ngq54ii9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_-aVk0X2bahMMPSyQo7G8OZdXZP5qIuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646419448425-6tlg5aeaie9ij2c9rslknf1ngq54ii9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
