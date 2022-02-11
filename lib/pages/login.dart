@@ -1,4 +1,6 @@
+import 'package:firebase_auth_oauth/firebase_auth_oauth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:applitech/global/variables.dart' as global;
 
@@ -14,6 +16,16 @@ class _LoginState extends State<Login> {
   TextEditingController passwordController = TextEditingController();
   bool isVisible = true;
   String errorMessage = '';
+
+  Future<void> performLogin(String provider, List<String> scopes,
+      Map<String, String> parameters) async {
+    try {
+      await FirebaseAuthOAuth().openSignInFlow(provider, scopes, parameters);
+      Navigator.of(context).pushNamed('/home');
+    } on PlatformException catch (error) {
+      debugPrint("${error.code}: ${error.message}");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +162,18 @@ class _LoginState extends State<Login> {
                   height: 16,
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await performLogin("microsoft.com", [
+                      "email openid"
+                    ], {
+                      "token_url":
+                          "https://login.microsoftonline.com/common/oauth2/token",
+                      "redirect_url":
+                          "https://login.microsoftonline.com/common/oauth2/authorize",
+                      "flow_type": "code",
+                      "flow": "authorizationCode",
+                    });
+                  },
                   icon: const FaIcon(
                     FontAwesomeIcons.microsoft,
                   ),
