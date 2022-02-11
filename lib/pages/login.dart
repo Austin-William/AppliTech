@@ -166,10 +166,10 @@ class _LoginState extends State<Login> {
                     await performLogin("microsoft.com", [
                       "email openid"
                     ], {
-                      "token_url":
-                          "https://login.microsoftonline.com/common/oauth2/token",
-                      "redirect_url":
-                          "https://login.microsoftonline.com/common/oauth2/authorize",
+                      "prompt": "consent",
+                      "tenant": global.tenantId,
+                      "token_url": global.urlToken,
+                      "redirect_url": global.redirectUrl,
                       "flow_type": "code",
                       "flow": "authorizationCode",
                     });
