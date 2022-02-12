@@ -19,33 +19,56 @@ class _LoginState extends State<Login> {
   bool isVisible = true;
   String errorMessage = '';
 
-  Future<void> performLogin(String provider, List<String> scopes,
-      Map<String, String> parameters) async {
+  Future<void> performLogin() async {
     try {
-      await FirebaseAuthOAuth().openSignInFlow(provider, scopes, parameters);
-      global.token = (await FirebaseAuth.instance.currentUser?.getIdToken())!;
-
       final Dio dio = Dio();
 
-      // dio.post(
-      //   'https://login.microsoftonline.com/common/oauth2/token',
-      //   data: {
-      //     'token': global.token,
-      //   },
-      // );
+      final responsePost = await dio.post(
+        'https://intra.epitech.eu/login',
+        data: {
+          'token': global.token,
+          'remember_me': 'on',
+        },
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+      );
+
+      print('RESPONSE POST : $responsePost');
+
+      global.redirectUrl = responsePost.data['office_auth_uri'];
+
+      print('REDIRECT URI : ${global.redirectUrl}');
+
+      await FirebaseAuthOAuth().openSignInFlow("microsoft.com", [
+        "email openid"
+      ], {
+        "prompt": "consent",
+        "tenant": global.tenantId,
+        "redirect_url": global.redirectUrl,
+        "flow_type": "code",
+        "flow": "authorizationCode",
+      });
+
+      global.token = (await FirebaseAuth.instance.currentUser?.getIdToken())!;
 
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
 
-      // final user = await dio.get(
-      //   'https://intra.epitech.eu/user/?format=json',
-      //   options: Options(
-      //     headers: {
-      //       'Authorization': 'Bearer ${global.token}',
-      //     },
-      //   ),
-      // );
+      final user = await dio.get(
+        'https://intra.epitech.eu/user/?format=json',
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer ${global.token}',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
 
       // final home = await dio.get(
       //   'https://intra.epitech.eu/?format=json',
@@ -56,7 +79,7 @@ class _LoginState extends State<Login> {
       //   ),
       // );
 
-      // global.userData = user.data;
+      global.userData = user.data;
       // global.homeData = home.data;
 
       /////////////////////////////////////////////////////////////////////
@@ -206,16 +229,7 @@ class _LoginState extends State<Login> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () async {
-                    await performLogin("microsoft.com", [
-                      "email openid"
-                    ], {
-                      "prompt": "consent",
-                      "tenant": global.tenantId,
-                      "token_url": global.urlToken,
-                      "redirect_url": global.redirectUrl,
-                      "flow_type": "code",
-                      "flow": "authorizationCode",
-                    });
+                    await performLogin();
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.microsoft,
