@@ -24,8 +24,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       leading: Builder(
         builder: (context) {
           return IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.menu,
+              color: global.isThemeDark ? Colors.black : Colors.white,
             ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           );
@@ -33,10 +34,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       title: Text(
         widget.title,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 18,
+          color: global.isThemeDark ? Colors.black : Colors.white,
         ),
       ),
+      backgroundColor: global.isThemeDark ? Colors.amber : Colors.blue,
       centerTitle: true,
       elevation: 4,
       shadowColor: global.isThemeDark ? Colors.grey[900] : Colors.grey[200],

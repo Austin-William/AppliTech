@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:applitech/components/appbar.dart';
 import 'package:applitech/components/drawer.dart';
+import 'package:applitech/global/variables.dart' as global;
 
 // Affiche la page d'accueil avec les tabview
 
@@ -20,40 +21,31 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       drawer: const CustomDrawer(),
       body: ListView(
-        children: const <Widget>[
+        children: <Widget>[
           Card(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: Icon(Icons.timelapse),
-              title: Text('Temps de connexion'),
-              subtitle: Text('2 heures'),
+              leading: const Icon(Icons.timelapse),
+              title: const Text('GPA'),
+              subtitle: Text(global.userData['gpa'].toString()),
             ),
             shadowColor: Colors.grey,
           ),
           Card(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: Icon(Icons.person_off),
-              title: Text('Absences'),
-              subtitle: Text('2 absences'),
+              leading: const Icon(Icons.timelapse),
+              title: const Text('Année'),
+              subtitle: Text(global.userData['studentyear'].toString()),
             ),
             shadowColor: Colors.grey,
           ),
           Card(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: Icon(Icons.flag_sharp),
-              title: Text('Flags'),
-              subtitle: Text('2 flags'),
-            ),
-            shadowColor: Colors.grey,
-          ),
-          Card(
-            margin: EdgeInsets.all(10),
-            child: ListTile(
-              leading: Icon(Icons.person_pin_circle_rounded),
-              title: Text('Binômes'),
-              subtitle: Text('2 binômes'),
+              leading: const Icon(Icons.timelapse),
+              title: const Text('Temps de connexion'),
+              subtitle: Text(global.userData['nsstat']['active'].toString()),
             ),
             shadowColor: Colors.grey,
           ),

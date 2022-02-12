@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_oauth/firebase_auth_oauth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +23,48 @@ class _LoginState extends State<Login> {
       Map<String, String> parameters) async {
     try {
       await FirebaseAuthOAuth().openSignInFlow(provider, scopes, parameters);
+      global.token = (await FirebaseAuth.instance.currentUser?.getIdToken())!;
+
+      final Dio dio = Dio();
+
+      // dio.post(
+      //   'https://login.microsoftonline.com/common/oauth2/token',
+      //   data: {
+      //     'token': global.token,
+      //   },
+      // );
+
+      /////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////
+
+      // final user = await dio.get(
+      //   'https://intra.epitech.eu/user/?format=json',
+      //   options: Options(
+      //     headers: {
+      //       'Authorization': 'Bearer ${global.token}',
+      //     },
+      //   ),
+      // );
+
+      // final home = await dio.get(
+      //   'https://intra.epitech.eu/?format=json',
+      //   options: Options(
+      //     headers: {
+      //       'Authorization': 'Bearer ${global.token}',
+      //     },
+      //   ),
+      // );
+
+      // global.userData = user.data;
+      // global.homeData = home.data;
+
+      /////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////
+
       Navigator.of(context).pushNamed('/home');
+      print("Login Success");
     } on PlatformException catch (error) {
       debugPrint("${error.code}: ${error.message}");
     }

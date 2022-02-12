@@ -12,6 +12,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: global.isThemeDark ? Colors.black : Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -39,7 +40,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       borderRadius: BorderRadius.circular(8),
                       child: const Image(
                         image: NetworkImage(
-                          'https://picsum.photos/250?image=9',
+                          'https://i.imgur.com/qQQZQQq.jpg',
+                          // global.userData['picture'],
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -47,7 +49,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Firstname Lastname',
+                    "Austin-William Lo",
+                    // global.userData['title'],
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -56,7 +59,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'example@epitech.eu',
+                    "austin-william.lo@epitech.eu",
+                    // global.userData['login'],
                     style: TextStyle(
                       fontSize: 16,
                       color: global.isThemeDark ? Colors.black : Colors.white,
@@ -64,7 +68,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    "120 " "credits",
+                    "120 credits",
+                    // global.userData['credits'] + "crédits",
                     style: TextStyle(
                       fontSize: 16,
                       color: global.isThemeDark ? Colors.black : Colors.white,

@@ -23,20 +23,20 @@ class _SettingsPageState extends State<SettingsPage> {
       drawer: const CustomDrawer(),
       body: ListView(
         children: <Widget>[
-          ListTile(
-            leading: const Icon(Icons.light_mode_outlined),
-            title: SwitchListTile(
-              title: const Text('Mode sombre'),
-              value: global.isThemeDark,
-              onChanged: (bool value) {
-                setState(
-                  () {
-                    global.isThemeDark = value;
-                  },
-                );
-              },
-            ),
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.light_mode_outlined),
+          //   title: SwitchListTile(
+          //     title: const Text('Mode sombre'),
+          //     value: global.isThemeDark,
+          //     onChanged: (bool value) {
+          //       setState(
+          //         () {
+          //           global.isThemeDark = value;
+          //         },
+          //       );
+          //     },
+          //   ),
+          // ),
           const SizedBox(
             height: 20,
           ),
@@ -45,13 +45,19 @@ class _SettingsPageState extends State<SettingsPage> {
             title: Text('Langue'),
             subtitle: Text('Français'),
           ),
-          const Center(
-            child: Text(
-              'Les modifications prendront effet après redémarrage de l\'application',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-                fontStyle: FontStyle.italic,
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            child: Center(
+              child: Text(
+                'Les modifications prendront effet après redémarrage de l\'application',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           ),

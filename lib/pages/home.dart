@@ -1,5 +1,4 @@
 import 'package:applitech/pages/routes/calendar_page.dart';
-import 'package:applitech/pages/routes/home_page.dart';
 import 'package:applitech/pages/routes/module_page.dart';
 import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,7 @@ class _HomeState extends State<Home> {
         type: BottomNavigationBarType
             .fixed, // barre de navigation fixe, si 'fixed' changed to 'shifting' => barre de nav devient blanche
         currentIndex: nbIndex,
-        backgroundColor: Colors.white12,
+        backgroundColor: global.isThemeDark ? Colors.black : Colors.white12,
         iconSize: 18,
         selectedIconTheme: IconThemeData(
           color: global.isThemeDark
@@ -62,12 +61,6 @@ class _HomeState extends State<Home> {
               curve: Curves.easeInOut);
         },
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-            ),
-            label: "Accueil",
-          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.calendar_today,
@@ -96,9 +89,6 @@ class _HomeState extends State<Home> {
           });
         },
         children: const <Widget>[
-          Center(
-            child: HomePage(),
-          ),
           Center(
             child: CalendarPage(),
           ),

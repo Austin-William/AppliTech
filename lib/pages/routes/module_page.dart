@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:applitech/global/variables.dart' as global;
 
 class ModulePage extends StatefulWidget {
   const ModulePage({Key? key}) : super(key: key);
@@ -12,17 +13,23 @@ class _ModulePageState extends State<ModulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: const [
-          Card(
-            margin: EdgeInsets.all(8),
-            shadowColor: Colors.grey,
-            child: ListTile(
-              title: Text('module name'),
+        children: [
+          for (var i = 0; i < global.homeData['board']['modules'].length; i++)
+            ListTile(
+              title: Text(
+                global.homeData['board']['projets'][i]['title'],
+              ),
               subtitle: Text(
-                'List of projects',
-              ), // boucle for qui affiche les projets inscrits
+                global.homeData['board']['projets'][i]['timeline_start'] +
+                    " - " +
+                    global.homeData['board']['projets'][i]['timeline_end'],
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 65, 65, 65),
+                ),
+              ),
             ),
-          ),
         ],
       ),
     );

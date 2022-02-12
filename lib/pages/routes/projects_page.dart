@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:applitech/global/variables.dart' as global;
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({Key? key}) : super(key: key);
@@ -11,9 +12,24 @@ class _ProjectsPageState extends State<ProjectsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: const <Widget>[
-          Text('Projects'),
+      body: ListView(
+        children: [
+          for (var i = 0; i < global.homeData['board']['projets'].length; i++)
+            ListTile(
+              title: Text(
+                global.homeData['board']['projets'][i]['title'],
+              ),
+              subtitle: Text(
+                global.homeData['board']['projets'][i]['timeline_start'] +
+                    " - " +
+                    global.homeData['board']['projets'][i]['timeline_end'],
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 65, 65, 65),
+                ),
+              ),
+            ),
         ],
       ),
     );
