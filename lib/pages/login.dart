@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_oauth/firebase_auth_oauth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,6 +25,8 @@ class _LoginState extends State<Login> {
         'https://intra.epitech.eu/login',
         data: {
           'token': global.token,
+          'login': emailController.text,
+          'password': passwordController.text,
           'remember_me': 'on',
         },
         options: Options(
@@ -36,34 +36,16 @@ class _LoginState extends State<Login> {
           },
         ),
       );
-
-      print('RESPONSE POST : $responsePost');
-
       global.redirectUrl = responsePost.data['office_auth_uri'];
 
-      print('REDIRECT URI : ${global.redirectUrl}');
-
-      await FirebaseAuthOAuth().openSignInFlow("microsoft.com", [
-        "email openid"
-      ], {
-        "prompt": "consent",
-        "tenant": global.tenantId,
-        "redirect_url": global.redirectUrl,
-        "flow_type": "code",
-        "flow": "authorizationCode",
-      });
-
-      global.token = (await FirebaseAuth.instance.currentUser?.getIdToken())!;
-
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
 
-      final user = await dio.get(
-        'https://intra.epitech.eu/user/?format=json',
+      final login = await dio.get(
+        global.redirectUrl,
         options: Options(
           headers: {
-            'Authorization': 'Bearer ${global.token}',
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
@@ -79,14 +61,16 @@ class _LoginState extends State<Login> {
       //   ),
       // );
 
-      global.userData = user.data;
+      global.loginUrl = login.data;
+
       // global.homeData = home.data;
 
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
 
-      Navigator.of(context).pushNamed('/home');
+      Navigator.of(context).pushNamed('/webview');
+      print(global.loginUrl);
       print("Login Success");
     } on PlatformException catch (error) {
       debugPrint("${error.code}: ${error.message}");
@@ -215,7 +199,7 @@ class _LoginState extends State<Login> {
                       } else {
                         errorMessage = '';
                         global.isLoggedIn = true;
-                        Navigator.popAndPushNamed(context, '/home');
+                        performLogin();
                       }
                     }
                   },

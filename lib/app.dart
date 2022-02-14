@@ -1,7 +1,9 @@
+import 'package:applitech/pages/webview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:applitech/pages/home.dart';
 import 'package:applitech/pages/login.dart';
+import 'package:applitech/pages/webview.dart';
 import 'package:applitech/pages/routes/notes_page.dart';
 import 'package:applitech/pages/routes/settings_page.dart';
 import 'package:applitech/pages/routes/profile_page.dart';
@@ -119,6 +121,7 @@ class _AppliTechState extends State<AppliTech> {
         '/settings': (context) => const SettingsPage(),
         '/profile': (context) => const ProfilePage(),
         '/help': (context) => const HelpPage(),
+        '/webview': (context) => WebviewPage(context: context),
       },
     );
   }
