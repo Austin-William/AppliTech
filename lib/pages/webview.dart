@@ -12,14 +12,34 @@ class WebviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WebViewController _controller;
     return Scaffold(
       body: WebView(
         initialUrl: global.redirectUrl,
         javascriptMode: JavascriptMode.unrestricted,
-        onPageStarted: (String url) {
-          getAccessToken(context, url);
+        onWebViewCreated: (WebViewController webViewController) {
+          _controller = webViewController;
+        },
+        javascriptChannels: <JavascriptChannel>{
+          _extractDataJSChannel(context),
+        },
+        onPageStarted: (url) {
+          print('Page started loading: $url');
+        },
+        onPageFinished: (url) {
+          print('Page finished loading: $url');
         },
       ),
+    );
+  }
+
+  JavascriptChannel _extractDataJSChannel(BuildContext context) {
+    return JavascriptChannel(
+      name: 'Flutter',
+      onMessageReceived: (JavascriptMessage message) {
+        String pageBody = message.message;
+        print('page body: $pageBody');
+      },
     );
   }
 }

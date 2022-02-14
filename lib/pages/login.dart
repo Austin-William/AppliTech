@@ -24,7 +24,6 @@ class _LoginState extends State<Login> {
       final responsePost = await dio.post(
         'https://intra.epitech.eu/login',
         data: {
-          'token': global.token,
           'login': emailController.text,
           'password': passwordController.text,
           'remember_me': 'on',
@@ -52,15 +51,13 @@ class _LoginState extends State<Login> {
       String? state = queryParams['state'];
       String? code = queryParams['response_type'];
 
-      final tokenUrl = await dio.post(
-        'https://intra.epitech.eu/login',
-        data: {
-          'client_id': clientId,
-          'redirect_uri': redirectUri,
-          'state': state,
-          'code': code,
-          'grant_type': 'authorization_code',
-        },
+      global.clientId = clientId;
+      global.redirectUri = redirectUri;
+      global.state = state;
+      global.code = code;
+
+      final auth = await dio.post(
+        "https://login.microsoftonline.com/common/oauth2/authorize?client_id=$clientId&response_type=$code",
         options: Options(
           headers: {
             'Accept': 'application/json',
@@ -68,37 +65,8 @@ class _LoginState extends State<Login> {
           },
         ),
       );
-      print(tokenUrl.data);
-      /////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////
 
-      // final login = await dio.get(
-      //   global.redirectUrl,
-      //   options: Options(
-      //     headers: {
-      //       "Authorization": "Basic " + clientId!,
-      //       'Accept': 'application/json',
-      //       'Content-Type': 'application/json',
-      //     },
-      //   ),
-      // );
-
-      // final home = await dio.get(
-      //   'https://intra.epitech.eu/?format=json',
-      //   options: Options(
-      //     headers: {
-      //       'Authorization': 'Bearer ' + clientId!,
-      //     },
-      //   ),
-      // );
-
-      //global.loginUrl = login.data;
-      //global.homeData = home.data;
-
-      /////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////
+      print(auth.data);
 
       //Navigator.of(context).pushNamed('/webview');
     } on PlatformException catch (error) {

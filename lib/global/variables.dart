@@ -16,6 +16,12 @@ String redirectUrl =
     "https://login.microsoftonline.com/common/oauth2/authorize";
 // "https://intra.epitech.eu";
 
+String? clientId = "";
+String? redirectUri = "";
+String? state = "";
+String? code = "";
+
 String token = "";
+
 dynamic userData;
 dynamic homeData;
