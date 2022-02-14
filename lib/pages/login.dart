@@ -38,40 +38,69 @@ class _LoginState extends State<Login> {
       );
       global.redirectUrl = responsePost.data['office_auth_uri'];
 
+      // Parse the redirect url
+
+      Uri uri = Uri.parse(global.redirectUrl);
+
+      // Get the query parameters
+
+      Map<String, String> queryParams = uri.queryParameters;
+      print(queryParams);
+
+      String? clientId = queryParams['client_id'];
+      String? redirectUri = queryParams['redirect_uri'];
+      String? state = queryParams['state'];
+      String? code = queryParams['response_type'];
+
+      final tokenUrl = await dio.post(
+        'https://intra.epitech.eu/login',
+        data: {
+          'client_id': clientId,
+          'redirect_uri': redirectUri,
+          'state': state,
+          'code': code,
+          'grant_type': 'authorization_code',
+        },
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+      );
+      print(tokenUrl.data);
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
 
-      final login = await dio.get(
-        global.redirectUrl,
-        options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-        ),
-      );
+      // final login = await dio.get(
+      //   global.redirectUrl,
+      //   options: Options(
+      //     headers: {
+      //       "Authorization": "Basic " + clientId!,
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json',
+      //     },
+      //   ),
+      // );
 
       // final home = await dio.get(
       //   'https://intra.epitech.eu/?format=json',
       //   options: Options(
       //     headers: {
-      //       'Authorization': 'Bearer ${global.token}',
+      //       'Authorization': 'Bearer ' + clientId!,
       //     },
       //   ),
       // );
 
-      global.loginUrl = login.data;
-
-      // global.homeData = home.data;
+      //global.loginUrl = login.data;
+      //global.homeData = home.data;
 
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
 
-      Navigator.of(context).pushNamed('/webview');
-      print(global.loginUrl);
-      print("Login Success");
+      //Navigator.of(context).pushNamed('/webview');
     } on PlatformException catch (error) {
       debugPrint("${error.code}: ${error.message}");
     }
