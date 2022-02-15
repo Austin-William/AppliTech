@@ -38,10 +38,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     height: 80,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: const Image(
+                      child: Image(
                         image: NetworkImage(
-                          'https://i.imgur.com/qQQZQQq.jpg',
-                          // global.userData['picture'],
+                          global.userData['picture'],
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -49,8 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Austin-William Lo",
-                    // global.userData['title'],
+                    global.userData['title'],
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -59,8 +57,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "austin-william.lo@epitech.eu",
-                    // global.userData['login'],
+                    global.userData['login'],
                     style: TextStyle(
                       fontSize: 16,
                       color: global.isThemeDark ? Colors.black : Colors.white,
@@ -68,8 +65,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    "120 credits",
-                    // global.userData['credits'] + "crédits",
+                    global.userData['credits'] + "crédits",
                     style: TextStyle(
                       fontSize: 16,
                       color: global.isThemeDark ? Colors.black : Colors.white,

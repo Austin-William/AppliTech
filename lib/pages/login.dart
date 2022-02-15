@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:applitech/api/api.dart';
 import 'package:applitech/global/variables.dart' as global;
 
 class Login extends StatefulWidget {
@@ -12,67 +10,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController linkController = TextEditingController();
   bool isVisible = true;
   String errorMessage = '';
-
-  Future<void> performLogin() async {
-    try {
-      final Dio dio = Dio();
-
-      final responsePost = await dio.post(
-        'https://intra.epitech.eu/login',
-        data: {
-          'login': emailController.text,
-          'password': passwordController.text,
-          'remember_me': 'on',
-        },
-        options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        ),
-      );
-      global.redirectUrl = responsePost.data['office_auth_uri'];
-
-      // Parse the redirect url
-
-      Uri uri = Uri.parse(global.redirectUrl);
-
-      // Get the query parameters
-
-      Map<String, String> queryParams = uri.queryParameters;
-      print(queryParams);
-
-      String? clientId = queryParams['client_id'];
-      String? redirectUri = queryParams['redirect_uri'];
-      String? state = queryParams['state'];
-      String? code = queryParams['response_type'];
-
-      global.clientId = clientId;
-      global.redirectUri = redirectUri;
-      global.state = state;
-      global.code = code;
-
-      final auth = await dio.post(
-        "https://login.microsoftonline.com/common/oauth2/authorize?client_id=$clientId&response_type=$code",
-        options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        ),
-      );
-
-      print(auth.data);
-
-      //Navigator.of(context).pushNamed('/webview');
-    } on PlatformException catch (error) {
-      debugPrint("${error.code}: ${error.message}");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,43 +42,8 @@ class _LoginState extends State<Login> {
                   height: 16,
                 ),
                 TextField(
-                  controller: emailController,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        // print(value);
-                      },
-                    );
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.mail),
-                    suffixIcon: emailController.text.isEmpty
-                        ? const Text('')
-                        : GestureDetector(
-                            onTap: () {
-                              emailController.clear();
-                            },
-                            child: const Icon(
-                              Icons.close,
-                            ),
-                          ),
-                    hintText: 'example@epitech.eu',
-                    labelText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(
-                        color: Colors.red,
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                TextField(
                   obscureText: isVisible,
-                  controller: passwordController,
+                  controller: linkController,
                   onChanged: (value) {
                     // print(value);
                   },
@@ -155,8 +60,8 @@ class _LoginState extends State<Login> {
                         isVisible ? Icons.visibility : Icons.visibility_off,
                       ),
                     ),
-                    hintText: 'Password',
-                    labelText: 'Password',
+                    hintText: 'Autologin link',
+                    labelText: 'Autologin link',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(
@@ -175,48 +80,28 @@ class _LoginState extends State<Login> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (emailController.text.isEmpty &&
-                        passwordController.text.isEmpty) {
+                    if (linkController.text.isEmpty) {
                       setState(() {
-                        errorMessage = 'Please fill all the fields';
+                        errorMessage = 'Please fill the field';
                       });
                     } else {
-                      if (emailController.text.isEmpty ||
-                          passwordController.text.isEmpty) {
-                        if (emailController.text.isEmpty) {
+                      if (linkController.text.isEmpty) {
+                        if (linkController.text.isEmpty) {
                           setState(() {
-                            errorMessage = 'Email is missing';
-                          });
-                        }
-                        if (passwordController.text.isEmpty) {
-                          setState(() {
-                            errorMessage = 'Password is missing';
+                            errorMessage = 'Autologin is required';
                           });
                         }
                       } else {
                         errorMessage = '';
                         global.isLoggedIn = true;
-                        performLogin();
+                        global.autologinLink = linkController.text;
+                        getData(context);
                       }
                     }
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     child: Text('Submit'),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    await performLogin();
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.microsoft,
-                  ),
-                  label: const Text(
-                    "Connect with Microsoft",
                   ),
                 ),
               ],

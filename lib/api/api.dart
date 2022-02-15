@@ -1,27 +1,61 @@
-import 'package:applitech/global/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
+import 'package:applitech/global/variables.dart' as global;
 
-void getAccessToken(BuildContext context, String url) async {
-  final Dio dio = Dio();
+Future<void> getData(context) async {
+  try {
+    final Dio dio = Dio();
+    String format = "?format=json";
 
-  dio.options.headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-  };
+    // Get home data
 
-  dio.options.baseUrl = url;
+    final getHomeData = await dio.get(
+      global.autologinLink + '/' + format,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
 
-  final dynamic userData = await dio.get(
-    redirectUrl,
-    options: Options(
-      followRedirects: true,
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-    ),
-  );
+    // Get user data
 
-  print(userData.data);
+    final getUserData = await dio.get(
+      global.autologinLink + '/user/' + format,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
+
+    // Print all datas
+
+    print(getUserData.data);
+    print(getHomeData.data);
+
+    // Attribute datas to global variables
+
+    global.userData = getUserData.data;
+    global.homeData = getHomeData.data;
+
+    // Navigate to home page
+
+    Navigator.pushNamed(context, '/home');
+
+    // End of the function
+  } on PlatformException catch (error) {
+    debugPrint("${error.code}: ${error.message}");
+  }
 }

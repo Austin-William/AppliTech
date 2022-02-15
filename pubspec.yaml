@@ -29,9 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^3.0.1
-  firebase_core: ^1.4.0
-  firebase_auth_oauth: ^1.0.3
   dio: ^4.0.4
 
 
