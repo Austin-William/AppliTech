@@ -40,6 +40,21 @@ Future<void> getData(context) async {
       ),
     );
 
+    // Get calendar data
+
+    final getCalendarData = await dio.get(
+      global.autologinLink + '' + format,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
     // Print all datas
 
     print(getUserData.data);
@@ -49,6 +64,7 @@ Future<void> getData(context) async {
 
     global.userData = getUserData.data;
     global.homeData = getHomeData.data;
+    // global.calendarData = getCalendarData.data;
 
     // Navigate to home page
 
