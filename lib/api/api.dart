@@ -40,10 +40,26 @@ Future<void> getData(context) async {
       ),
     );
 
-    // Get user data
+    // Get absences data
 
     final getAbsencesData = await dio.get(
       global.autologinLink + '/user/notification/missed' + format,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
+
+    // Get notifications data
+
+    final getNotifData = await dio.get(
+      global.autologinLink + '/user/notification/message' + format,
       options: Options(
         followRedirects: false,
         validateStatus: (status) {
@@ -87,6 +103,7 @@ Future<void> getData(context) async {
     global.homeData = getHomeData.data;
     global.calendarData = getCalendarData.data;
     global.absencesData = getAbsencesData.data;
+    global.notificationsData = getNotifData.data;
 
     // Navigate to home page
 
