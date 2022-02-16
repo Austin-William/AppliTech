@@ -42,8 +42,17 @@ Future<void> getData(context) async {
 
     // Get calendar data
 
+    final startDate = DateTime.now();
+    final endDate = DateTime.now().add(const Duration(days: 7));
+
     final getCalendarData = await dio.get(
-      global.autologinLink + '' + format,
+      global.autologinLink +
+          '/planning/load' +
+          format +
+          '&start=' +
+          startDate.toString().substring(0, 10) +
+          '&end=' +
+          endDate.toString().substring(0, 10),
       options: Options(
         followRedirects: false,
         validateStatus: (status) {
@@ -55,16 +64,12 @@ Future<void> getData(context) async {
         },
       ),
     );
-    // Print all datas
-
-    print(getUserData.data);
-    print(getHomeData.data);
 
     // Attribute datas to global variables
 
     global.userData = getUserData.data;
     global.homeData = getHomeData.data;
-    // global.calendarData = getCalendarData.data;
+    global.calendarData = getCalendarData.data;
 
     // Navigate to home page
 

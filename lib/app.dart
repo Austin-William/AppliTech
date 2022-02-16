@@ -75,6 +75,7 @@ class _AppliTechState extends State<AppliTech> {
     return MaterialApp(
       title: 'AppliTech',
       theme: global.isThemeDark ? darkTheme : lightTheme,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(

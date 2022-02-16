@@ -15,18 +15,20 @@ class _ProjectsPageState extends State<ProjectsPage> {
       body: ListView(
         children: [
           for (var i = 0; i < global.homeData['board']['projets'].length; i++)
-            ListTile(
-              title: Text(
-                global.homeData['board']['projets'][i]['title'],
-              ),
-              subtitle: Text(
-                global.homeData['board']['projets'][i]['timeline_start'] +
-                    " - " +
-                    global.homeData['board']['projets'][i]['timeline_end'],
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 65, 65, 65),
+            Card(
+              child: ListTile(
+                title: Text(
+                  global.homeData['board']['projets'][i]['title'],
+                ),
+                subtitle: Text(
+                  global.homeData['board']['projets'][i]['timeline_start'] +
+                      " - " +
+                      global.homeData['board']['projets'][i]['timeline_end'],
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 65, 65, 65),
+                  ),
                 ),
               ),
             ),
