@@ -40,7 +40,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       borderRadius: BorderRadius.circular(8),
                       child: Image(
                         image: NetworkImage(
-                          global.userData['picture'],
+                          global.autologinLink + global.userData['picture'],
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -65,7 +65,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    global.userData['credits'] + "crédits",
+                    global.userData['credits'].toString() + " crédits",
                     style: TextStyle(
                       fontSize: 16,
                       color: global.isThemeDark ? Colors.black : Colors.white,
@@ -94,6 +94,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
             title: const Text("Notes"),
             onTap: () {
               Navigator.of(context).popAndPushNamed('/notes');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.do_not_disturb_alt_outlined),
+            title: const Text("Absences"),
+            onTap: () {
+              Navigator.of(context).popAndPushNamed('/absences');
             },
           ),
           ListTile(

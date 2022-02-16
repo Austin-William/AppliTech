@@ -10,3 +10,5 @@ String version = "1.0.0";
 dynamic userData;
 dynamic homeData;
 dynamic calendarData;
+dynamic absencesData;
+dynamic notificationsData;

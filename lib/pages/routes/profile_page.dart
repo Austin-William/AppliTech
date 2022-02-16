@@ -25,18 +25,28 @@ class _ProfilePageState extends State<ProfilePage> {
           Card(
             margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: const Icon(Icons.timelapse),
+              leading: const Icon(Icons.bookmark_outline),
               title: const Text('GPA'),
-              subtitle: Text(global.userData['gpa'].toString()),
+              subtitle: Text(global.userData['gpa'][0]['gpa'].toString()),
             ),
             shadowColor: Colors.grey,
           ),
           Card(
             margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: const Icon(Icons.timelapse),
+              leading: const Icon(Icons.school),
+              title: const Text('Cycle'),
+              subtitle: Text(global.userData['gpa'][0]['cycle']),
+            ),
+            shadowColor: Colors.grey,
+          ),
+          Card(
+            margin: const EdgeInsets.all(10),
+            child: ListTile(
+              leading: const Icon(Icons.date_range),
               title: const Text('Année'),
-              subtitle: Text(global.userData['studentyear'].toString()),
+              subtitle:
+                  Text(global.userData['studentyear'].toString() + "ème année"),
             ),
             shadowColor: Colors.grey,
           ),
@@ -45,7 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ListTile(
               leading: const Icon(Icons.timelapse),
               title: const Text('Temps de connexion'),
-              subtitle: Text(global.userData['nsstat']['active'].toString()),
+              subtitle: Text(global.userData['nsstat']['active'].toString() +
+                  " h/semaine"),
             ),
             shadowColor: Colors.grey,
           ),
