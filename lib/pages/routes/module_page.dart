@@ -17,12 +17,12 @@ class _ModulePageState extends State<ModulePage> {
           for (var i = 0; i < global.homeData['board']['modules'].length; i++)
             ListTile(
               title: Text(
-                global.homeData['board']['projets'][i]['title'],
+                global.homeData['board']['modules'][i]['title'],
               ),
               subtitle: Text(
-                global.homeData['board']['projets'][i]['timeline_start'] +
+                global.homeData['board']['modules'][i]['timeline_start'] +
                     " - " +
-                    global.homeData['board']['projets'][i]['timeline_end'],
+                    global.homeData['board']['modules'][i]['timeline_end'],
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
