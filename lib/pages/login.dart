@@ -47,9 +47,6 @@ class _LoginState extends State<Login> {
                       obscureText: isVisible,
                       controller: linkController,
                       textDirection: TextDirection.ltr,
-                      onChanged: (value) {
-                        // print(value);
-                      },
                       decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.lock,

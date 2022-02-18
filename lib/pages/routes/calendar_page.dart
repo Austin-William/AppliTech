@@ -11,10 +11,34 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
+    global.currentDate =
+        DateTime.now().add(Duration(days: global.timerActivityComing));
     return Scaffold(
       body: ListView(
         children: [
-          for (var i = 0; i < global.calendarData.length; i++)
+          for (var i = 0; i < global.calendarData.length; i++) ...[
+            if (global.calendarData[i]['start'] == global.currentDate) ...[
+              AlertDialog(
+                title: const Text('Alerte !'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      Text("L'activité " +
+                          global.calendarData[i]['titlemodule'] +
+                          " va commencer dans 5 minutes !"),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('Ok'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ],
             Card(
               elevation: 5,
               child: ListTile(
@@ -53,6 +77,7 @@ class _CalendarPageState extends State<CalendarPage> {
                 ),
               ),
             ),
+          ],
         ],
       ),
     );

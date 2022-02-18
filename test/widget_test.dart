@@ -8,6 +8,14 @@
 import 'package:applitech/app.dart';
 import 'package:applitech/pages/home.dart';
 import 'package:applitech/pages/login.dart';
+import 'package:applitech/pages/routes/absences_page.dart';
+import 'package:applitech/pages/routes/calendar_page.dart';
+import 'package:applitech/pages/routes/help_page.dart';
+import 'package:applitech/pages/routes/module_page.dart';
+import 'package:applitech/pages/routes/notes_page.dart';
+import 'package:applitech/pages/routes/notifications_page.dart';
+import 'package:applitech/pages/routes/profile_page.dart';
+import 'package:applitech/pages/routes/projects_page.dart';
 import 'package:applitech/pages/routes/settings_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +40,78 @@ void main() {
       });
     });
 
+    // Check absences route
+
+    group("Absences test : ", () {
+      test('absences_page.dart file', () {
+        expect(const AbsencesPage(), isNotNull);
+      });
+    });
+
+    // Check calendar route
+
+    group("Calendar test : ", () {
+      test('calendar_page.dart file', () {
+        expect(const CalendarPage(), isNotNull);
+      });
+    });
+
+    // Check help route
+
+    group("Help test : ", () {
+      test('help.dart file', () {
+        expect(const HelpPage(), isNotNull);
+      });
+    });
+
+    // Check module route
+
+    group("Module test : ", () {
+      test('module_page.dart file', () {
+        expect(const ModulePage(), isNotNull);
+      });
+    });
+
+    // Check notes route
+
+    group("Notes test : ", () {
+      test('notes_page.dart file', () {
+        expect(const NotesPage(), isNotNull);
+      });
+    });
+
+    // Check notifications route
+
+    group("Notifications test : ", () {
+      test('notifications_page.dart file', () {
+        expect(const NotificationsPage(), isNotNull);
+      });
+    });
+
+    // Check profile route
+
+    group("Profile test : ", () {
+      test('profile_page.dart file', () {
+        expect(const ProfilePage(), isNotNull);
+      });
+    });
+
+    // Check projects route
+
+    group("Projects test : ", () {
+      test('projects_page.dart file', () {
+        expect(const ProjectsPage(), isNotNull);
+      });
+    });
+
+    // Check home page
+
+    group("Home test : ", () {
+      test('home.dart file', () {
+        expect(const Home(), isNotNull);
+      });
+    });
+
     // Check Login page
     group("Login test : ", () {
       test('login.dart file', () {
@@ -45,6 +125,11 @@ void main() {
           ),
         );
       }
+
+      testWidgets('textfield check', (WidgetTester tester) async {
+        await tester.pumpWidget(makeTestableWidget(const Login()));
+        expect(find.byType(TextField), findsOneWidget);
+      });
 
       testWidgets('elevated buttons check', (WidgetTester tester) async {
         await tester.pumpWidget(makeTestableWidget(const Login()));
