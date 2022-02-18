@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:applitech/components/appbar.dart';
 import 'package:applitech/components/drawer.dart';
 import 'package:applitech/global/variables.dart' as global;
@@ -23,20 +24,6 @@ class _SettingsPageState extends State<SettingsPage> {
       drawer: const CustomDrawer(),
       body: ListView(
         children: <Widget>[
-          // ListTile(
-          //   leading: const Icon(Icons.light_mode_outlined),
-          //   title: SwitchListTile(
-          //     title: const Text('Mode sombre'),
-          //     value: global.isThemeDark,
-          //     onChanged: (bool value) {
-          //       setState(
-          //         () {
-          //           global.isThemeDark = value;
-          //         },
-          //       );
-          //     },
-          //   ),
-          // ),
           const SizedBox(
             height: 20,
           ),
@@ -45,20 +32,20 @@ class _SettingsPageState extends State<SettingsPage> {
             title: Text('Langue'),
             subtitle: Text('Français'),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
-            child: Center(
-              child: Text(
-                'Les modifications prendront effet après redémarrage de l\'application',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
+          const SizedBox(
+            height: 20,
+          ),
+          ListTile(
+            leading: const Icon(Icons.timer_outlined),
+            title: const Text('Actvités'),
+            subtitle:
+                const Text('Avertissement avant une activité (en jours) :'),
+            trailing: NumberPicker(
+              value: global.timerActivityComing,
+              minValue: 0,
+              maxValue: 7,
+              onChanged: (value) =>
+                  setState(() => global.timerActivityComing = value),
             ),
           ),
           const SizedBox(
