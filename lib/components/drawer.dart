@@ -12,7 +12,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: global.isThemeDark ? Colors.black : Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
