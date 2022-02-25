@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:applitech/components/drawer.dart';
 import 'package:applitech/global/variables.dart' as global;
 
@@ -19,8 +20,14 @@ class _NotificationPageState extends State<NotificationsPage> {
           for (var i = 0; i < global.notificationsData.length; i++)
             Card(
               child: ListTile(
-                title: Text(
-                  global.notificationsData[i]['title'],
+                title: Html(
+                  data: global.notificationsData[i]['title'],
+                  style: {
+                    'body': Style(
+                      fontSize: const FontSize(18),
+                      color: Colors.black,
+                    ),
+                  },
                 ),
                 subtitle: Text(
                   "par " + global.notificationsData[i]['user']['title'],
