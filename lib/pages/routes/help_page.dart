@@ -10,6 +10,27 @@ class HelpPage extends StatefulWidget {
 }
 
 class _HelpPageState extends State<HelpPage> {
+
+  Widget displayDevelopperInfo(String name, String pictureUrl)
+  {
+    return (
+      Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image(
+              image: NetworkImage(pictureUrl),
+              width: 60,
+              height: 60,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(name),
+        ],
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,38 +60,25 @@ class _HelpPageState extends State<HelpPage> {
                 ],
               ),
             ),
-
-            const SizedBox(
-              height: 100,
-            ),
-            const Text(
-              'Développé par :',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            // Copier cette partie pour ajouter votre nom, j'ai la flemme de chercher dans vos Github
+            const SizedBox(height: 100),
+            const Text('Développé par :'),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: const Image(
-                    image: NetworkImage(
-                        'https://avatars.githubusercontent.com/u/55129304?v=4'),
-                    width: 60,
-                    height: 60,
-                  ),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                const Text(
-                  'Austin-William Lo',
-                ),
+                Column(
+                  children: [
+                    displayDevelopperInfo('Austin-William Lo', 'https://avatars.githubusercontent.com/u/55129304?v=4'),
+                    const SizedBox(height: 10),
+                    displayDevelopperInfo('Chloé Chauvin', 'https://avatars.githubusercontent.com/Nekory23'),
+                    const SizedBox(height: 10),
+                    displayDevelopperInfo('Quentin Treheux', 'https://avatars.githubusercontent.com/LuciferBahamut'),
+                    const SizedBox(height: 10),
+                    displayDevelopperInfo('Vincent Pichot', 'https://avatars.githubusercontent.com/Vincent-pichot'),
+                  ],
+                )
               ],
             ),
-            // Fin de la partie à copier
           ],
         ),
       ),
