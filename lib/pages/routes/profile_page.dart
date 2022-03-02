@@ -13,6 +13,21 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  Widget displayInfoCard(String title, String info, Icon icon) {
+    return(
+      Card(
+        margin: const EdgeInsets.all(10),
+        child: ListTile(
+          leading: icon,
+          title: Text(title),
+          subtitle: Text(info),
+        ),
+        shadowColor: Colors.grey,
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,44 +37,11 @@ class _ProfilePageState extends State<ProfilePage> {
       drawer: const CustomDrawer(),
       body: ListView(
         children: <Widget>[
-          Card(
-            margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: const Icon(Icons.bookmark_outline),
-              title: const Text('GPA'),
-              subtitle: Text(global.userData['gpa'][0]['gpa'].toString()),
-            ),
-            shadowColor: Colors.grey,
-          ),
-          Card(
-            margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: const Icon(Icons.school),
-              title: const Text('Cycle'),
-              subtitle: Text(global.userData['gpa'][0]['cycle']),
-            ),
-            shadowColor: Colors.grey,
-          ),
-          Card(
-            margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: const Icon(Icons.date_range),
-              title: const Text('Année'),
-              subtitle:
-                  Text(global.userData['studentyear'].toString() + "ème année"),
-            ),
-            shadowColor: Colors.grey,
-          ),
-          Card(
-            margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: const Icon(Icons.timelapse),
-              title: const Text('Temps de connexion'),
-              subtitle: Text(global.userData['nsstat']['active'].toString() +
-                  " h/semaine"),
-            ),
-            shadowColor: Colors.grey,
-          ),
+          displayInfoCard('GPA', global.userData['gpa'][0]['gpa'].toString(), const Icon(Icons.bookmark_outline)),
+          displayInfoCard('Cycle', global.userData['gpa'][0]['cycle'], const Icon(Icons.school)),
+          displayInfoCard('Année', global.userData['studentyear'].toString() + "ème année", const Icon(Icons.date_range)),
+          displayInfoCard('Temps de connexion', global.userData['nsstat']['active'].toString() + " h/semaine", const Icon(Icons.timelapse)), 
+          displayInfoCard('XPs', /* mettre les valeurs */'acquis : ' + '| en cours : ', const Icon(Icons.stars_rounded)),
         ],
       ),
     );
