@@ -24,17 +24,13 @@ class _SettingsPageState extends State<SettingsPage> {
       drawer: const CustomDrawer(),
       body: ListView(
         children: <Widget>[
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           const ListTile(
             leading: Icon(Icons.language_outlined),
             title: Text('Langue'),
             subtitle: Text('Français'),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           ListTile(
             leading: const Icon(Icons.timer_outlined),
             title: const Text('Actvités'),
@@ -48,9 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   setState(() => global.timerActivityComing = value),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Center(
             child: Text(
               'Version ${global.version}',
