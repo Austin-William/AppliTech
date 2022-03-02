@@ -9,6 +9,34 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+
+  Widget menuList(String title, String route, Icon icon)
+  {
+    return (
+      ListTile(
+        leading: icon,
+        title: Text(title),
+        onTap: () {
+          Navigator.of(context).popAndPushNamed(route);
+        },
+      )
+    );
+  }
+
+  Widget displayInfoUser(String info, double size)
+  {
+    return (
+      Text(
+        info,
+        style: TextStyle(
+          fontSize: size,
+          fontWeight: FontWeight.bold,
+          color: global.isThemeDark ? Colors.black : Colors.white,
+        ),
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -46,84 +74,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    global.userData['title'],
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: global.isThemeDark ? Colors.black : Colors.white,
-                    ),
-                  ),
+                  displayInfoUser(global.userData['title'], 20),
                   const SizedBox(height: 20),
-                  Text(
-                    global.userData['login'],
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: global.isThemeDark ? Colors.black : Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    global.userData['credits'].toString() + " crédits",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: global.isThemeDark ? Colors.black : Colors.white,
-                    ),
-                  ),
+                  displayInfoUser(global.userData['login'], 16),
+                  const SizedBox(height: 20),
+                  displayInfoUser(global.userData['credits'].toString() + " crédits", 16),
                 ],
               ),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text("Accueil"),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed('/home');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text("Profil"),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed('/profile');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.notes),
-            title: const Text("Notes"),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed('/notes');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.do_not_disturb_alt_outlined),
-            title: const Text("Absences"),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed('/absences');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text("Paramètres"),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed('/settings');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.help),
-            title: const Text("Aide"),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed('/help');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.exit_to_app),
-            title: const Text("Se déconnecter"),
-            onTap: () {
-              global.isLoggedIn = false;
-              Navigator.of(context).popAndPushNamed('/applitech');
-            },
-          ),
+          menuList('Acceuil', '/home', const Icon(Icons.menu_book)),
+          menuList('Profil', '/profile', const Icon(Icons.person)),
+          menuList('Notes', '/notes', const Icon(Icons.notes)),
+          menuList('Abscence', '/absences', const Icon(Icons.do_not_disturb_alt_outlined)),
+          menuList('Paramètres', '/settings', const Icon(Icons.settings)),
+          menuList('Aide', '/help', const Icon(Icons.help)),
+          menuList('Se déconnecter', '/applitech', const Icon(Icons.exit_to_app)),
         ],
       ),
     );
