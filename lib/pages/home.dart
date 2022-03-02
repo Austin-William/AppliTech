@@ -27,6 +27,16 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  BottomNavigationBarItem displayNavItem(String title, Icon icon)
+  {
+    return (
+      BottomNavigationBarItem(
+          icon: icon,
+          label: title,
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,31 +71,11 @@ class _HomeState extends State<Home> {
               duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut);
         },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.calendar_today,
-            ),
-            label: "Calendrier",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.timeline,
-            ),
-            label: "Projets",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.label_important,
-            ),
-            label: "Modules",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications,
-            ),
-            label: "Notifications",
-          ),
+        items: <BottomNavigationBarItem>[
+          displayNavItem("Calendrier", const Icon(Icons.calendar_today)),
+          displayNavItem("Projets", const Icon(Icons.timeline)),
+          displayNavItem("Modules", const Icon(Icons.label_important)),
+          displayNavItem("Notifications", const Icon(Icons.notifications)),
         ],
       ),
       body: PageView(
@@ -96,18 +86,10 @@ class _HomeState extends State<Home> {
           });
         },
         children: const <Widget>[
-          Center(
-            child: CalendarPage(),
-          ),
-          Center(
-            child: ProjectsPage(),
-          ),
-          Center(
-            child: ModulePage(),
-          ),
-          Center(
-            child: NotificationsPage(),
-          ),
+          Center(child: CalendarPage()),
+          Center(child: ProjectsPage()),
+          Center(child: ModulePage()),
+          Center(child: NotificationsPage()),
         ],
       ),
     );
