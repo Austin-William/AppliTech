@@ -27,7 +27,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 65, 65, 65),
                   ),
                 ),
               ),

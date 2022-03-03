@@ -26,7 +26,6 @@ class _ModulePageState extends State<ModulePage> {
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 65, 65, 65),
                 ),
               ),
             ),

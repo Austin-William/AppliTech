@@ -25,7 +25,6 @@ class _NotificationPageState extends State<NotificationsPage> {
                   style: {
                     'body': Style(
                       fontSize: const FontSize(18),
-                      color: Colors.black,
                     ),
                   },
                 ),
