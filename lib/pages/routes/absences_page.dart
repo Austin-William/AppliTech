@@ -11,29 +11,24 @@ class AbsencesPage extends StatefulWidget {
 }
 
 class _AbsencesPageState extends State<AbsencesPage> {
-
-  Widget displayAbsence(dynamic data)
-  {
-    return (
-      ListTile(
-        title: Text(
-          data['module_title'],
+  Widget displayAbsence(dynamic data) {
+    return (ListTile(
+      title: Text(
+        data['module_title'],
+      ),
+      subtitle: Text(
+        data['acti_title'],
+      ),
+      leading: Text(
+        data['categ_title'],
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 65, 65, 65),
         ),
-        subtitle: Text(
-          data['acti_title'],
-        ),
-        leading: Text(
-          data['categ_title'],
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 65, 65, 65),
-          ),
-        ),
-      )
-    );
+      ),
+    ));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +41,7 @@ class _AbsencesPageState extends State<AbsencesPage> {
         children: [
           Card(
             shape: BeveledRectangleBorder(
-               borderRadius: BorderRadius.circular(15.0),
+              borderRadius: BorderRadius.circular(15.0),
             ),
             child: Column(
               children: [
@@ -59,7 +54,9 @@ class _AbsencesPageState extends State<AbsencesPage> {
                   ),
                 ),
                 if (global.absencesData['recents'] != null)
-                  for (var i = 0; i < global.absencesData['recents'].length; i++)
+                  for (var i = 0;
+                      i < global.absencesData['recents'].length;
+                      i++)
                     displayAbsence(global.absencesData['recents'][i]),
               ],
             ),
@@ -67,8 +64,8 @@ class _AbsencesPageState extends State<AbsencesPage> {
           const SizedBox(height: 50),
           Card(
             shape: BeveledRectangleBorder(
-               borderRadius: BorderRadius.circular(15.0),
-              ),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             child: Column(
               children: [
                 const Text(
