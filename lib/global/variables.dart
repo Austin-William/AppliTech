@@ -15,3 +15,5 @@ dynamic homeData;
 dynamic calendarData;
 dynamic absencesData;
 dynamic notificationsData;
+dynamic hubAct;
+dynamic hubActFR;
