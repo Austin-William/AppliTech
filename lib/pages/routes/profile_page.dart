@@ -13,7 +13,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   int computeXp() {
     int xpTalk = 0;
     int xpWorkshop = 0;
@@ -21,78 +20,73 @@ class _ProfilePageState extends State<ProfilePage> {
 
     dynamic activities = global.hubAct['activites'];
     dynamic activitiesfr = global.hubActFR['activites'];
-    
-    for (var i = 0; i < activities.length; i++)
-    {
+
+    for (var i = 0; i < activities.length; i++) {
       if (activities[i]['type_title'] == "Talk") {
         dynamic status = activities[i]['events'];
-        for (var j = 0; j < status.length; j++)
+        for (var j = 0; j < status.length; j++) {
           if (status[j]['user_status'] == "present") {
-            if (xpTalk < 15)
-              xpTalk += 1;
+            if (xpTalk < 15) xpTalk += 1;
           }
+        }
       }
       if (activities[i]['type_title'] == "Workshop") {
         dynamic status = activities[i]['events'];
-        for (var j = 0; j < status.length; j++)
+        for (var j = 0; j < status.length; j++) {
           if (status[j]['user_status'] == "present") {
-            if (xpWorkshop < 20)
-              xpWorkshop += 2;
+            if (xpWorkshop < 20) xpWorkshop += 2;
           }
+        }
       }
       if (activities[i]['type_title'] == "Hackathon") {
         dynamic status = activities[i]['events'];
-        for (var j = 0; j < status.length; j++)
+        for (var j = 0; j < status.length; j++) {
           if (status[j]['user_status'] == "present") {
-            if (xpHackathon < 100)
-              xpHackathon += 6;
+            if (xpHackathon < 100) xpHackathon += 6;
           }
+        }
       }
     }
 
-    for (var i = 0; i < activitiesfr.length; i++)
-    {
+    for (var i = 0; i < activitiesfr.length; i++) {
       if (activitiesfr[i]['type_title'] == "Talk") {
         dynamic status = activitiesfr[i]['events'];
-        for (var j = 0; j < status.length; j++)
+        for (var j = 0; j < status.length; j++) {
           if (status[j]['user_status'] == "present") {
-            if (xpTalk < 15)
-              xpTalk += 1;
+            if (xpTalk < 15) xpTalk += 1;
           }
+        }
       }
       if (activitiesfr[i]['type_title'] == "Workshop") {
         dynamic status = activitiesfr[i]['events'];
-        for (var j = 0; j < status.length; j++)
+        for (var j = 0; j < status.length; j++) {
           if (status[j]['user_status'] == "present") {
-            if (xpWorkshop < 20)
-              xpWorkshop += 2;
+            if (xpWorkshop < 20) xpWorkshop += 2;
           }
+        }
       }
       if (activitiesfr[i]['type_title'] == "Hackathon") {
         dynamic status = activitiesfr[i]['events'];
-        for (var j = 0; j < status.length; j++)
+        for (var j = 0; j < status.length; j++) {
           if (status[j]['user_status'] == "present") {
-            if (xpHackathon < 100)
-              xpHackathon += 6;
+            if (xpHackathon < 100) xpHackathon += 6;
           }
+        }
       }
     }
     return xpTalk + xpWorkshop + xpHackathon;
   }
 
-
   Widget displayInfoCard(String title, String info, Icon icon) {
-    return(
-      Card(
-        margin: const EdgeInsets.all(10),
-        child: ListTile(
-          leading: icon,
-          title: Text(title),
-          subtitle: Text(info),
-        ),
-        shadowColor: Colors.grey,
-      )
-    );
+    return (Card(
+      margin: const EdgeInsets.all(10),
+      child: ListTile(
+        leading: icon,
+        title: Text(title),
+        subtitle: Text(info),
+      ),
+      shadowColor: Colors.grey,
+    ));
   }
 
   @override
@@ -104,11 +98,20 @@ class _ProfilePageState extends State<ProfilePage> {
       drawer: const CustomDrawer(),
       body: ListView(
         children: <Widget>[
-          displayInfoCard('GPA', global.userData['gpa'][0]['gpa'].toString(), const Icon(Icons.bookmark_outline)),
-          displayInfoCard('Cycle', global.userData['gpa'][0]['cycle'], const Icon(Icons.school)),
-          displayInfoCard('Année', global.userData['studentyear'].toString() + "ème année", const Icon(Icons.date_range)),
-          displayInfoCard('Temps de connexion', global.userData['nsstat']['active'].toString() + " h/semaine", const Icon(Icons.timelapse)), 
-          displayInfoCard('XPs', 'acquis : ' + computeXp().toString(), const Icon(Icons.stars_rounded)),
+          displayInfoCard('GPA', global.userData['gpa'][0]['gpa'].toString(),
+              const Icon(Icons.bookmark_outline)),
+          displayInfoCard('Cycle', global.userData['gpa'][0]['cycle'],
+              const Icon(Icons.school)),
+          displayInfoCard(
+              'Année',
+              global.userData['studentyear'].toString() + "ème année",
+              const Icon(Icons.date_range)),
+          displayInfoCard(
+              'Temps de connexion',
+              global.userData['nsstat']['active'].toString() + " h/semaine",
+              const Icon(Icons.timelapse)),
+          displayInfoCard('XPs', 'acquis : ' + computeXp().toString(),
+              const Icon(Icons.stars_rounded)),
         ],
       ),
     );
