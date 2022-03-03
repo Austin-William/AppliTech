@@ -14,6 +14,73 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
+  int computeXp() {
+    int xpTalk = 0;
+    int xpWorkshop = 0;
+    int xpHackathon = 0;
+
+    dynamic activities = global.hubAct['activites'];
+    dynamic activitiesfr = global.hubActFR['activites'];
+    
+    for (var i = 0; i < activities.length; i++)
+    {
+      if (activities[i]['type_title'] == "Talk") {
+        dynamic status = activities[i]['events'];
+        for (var j = 0; j < status.length; j++)
+          if (status[j]['user_status'] == "present") {
+            if (xpTalk < 15)
+              xpTalk += 1;
+          }
+      }
+      if (activities[i]['type_title'] == "Workshop") {
+        dynamic status = activities[i]['events'];
+        for (var j = 0; j < status.length; j++)
+          if (status[j]['user_status'] == "present") {
+            if (xpWorkshop < 20)
+              xpWorkshop += 2;
+          }
+      }
+      if (activities[i]['type_title'] == "Hackathon") {
+        dynamic status = activities[i]['events'];
+        for (var j = 0; j < status.length; j++)
+          if (status[j]['user_status'] == "present") {
+            if (xpHackathon < 100)
+              xpHackathon += 6;
+          }
+      }
+    }
+
+    for (var i = 0; i < activitiesfr.length; i++)
+    {
+      if (activitiesfr[i]['type_title'] == "Talk") {
+        dynamic status = activitiesfr[i]['events'];
+        for (var j = 0; j < status.length; j++)
+          if (status[j]['user_status'] == "present") {
+            if (xpTalk < 15)
+              xpTalk += 1;
+          }
+      }
+      if (activitiesfr[i]['type_title'] == "Workshop") {
+        dynamic status = activitiesfr[i]['events'];
+        for (var j = 0; j < status.length; j++)
+          if (status[j]['user_status'] == "present") {
+            if (xpWorkshop < 20)
+              xpWorkshop += 2;
+          }
+      }
+      if (activitiesfr[i]['type_title'] == "Hackathon") {
+        dynamic status = activitiesfr[i]['events'];
+        for (var j = 0; j < status.length; j++)
+          if (status[j]['user_status'] == "present") {
+            if (xpHackathon < 100)
+              xpHackathon += 6;
+          }
+      }
+    }
+    return xpTalk + xpWorkshop + xpHackathon;
+  }
+
+
   Widget displayInfoCard(String title, String info, Icon icon) {
     return(
       Card(
@@ -41,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
           displayInfoCard('Cycle', global.userData['gpa'][0]['cycle'], const Icon(Icons.school)),
           displayInfoCard('Année', global.userData['studentyear'].toString() + "ème année", const Icon(Icons.date_range)),
           displayInfoCard('Temps de connexion', global.userData['nsstat']['active'].toString() + " h/semaine", const Icon(Icons.timelapse)), 
-          displayInfoCard('XPs', /* mettre les valeurs */'acquis : ' + '| en cours : ', const Icon(Icons.stars_rounded)),
+          displayInfoCard('XPs', 'acquis : ' + computeXp().toString(), const Icon(Icons.stars_rounded)),
         ],
       ),
     );
