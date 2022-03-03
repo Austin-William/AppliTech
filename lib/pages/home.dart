@@ -27,14 +27,11 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  BottomNavigationBarItem displayNavItem(String title, Icon icon)
-  {
-    return (
-      BottomNavigationBarItem(
-          icon: icon,
-          label: title,
-      )
-    );
+  BottomNavigationBarItem displayNavItem(String title, Icon icon) {
+    return (BottomNavigationBarItem(
+      icon: icon,
+      label: title,
+    ));
   }
 
   @override
