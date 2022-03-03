@@ -97,6 +97,38 @@ Future<void> getData(context) async {
       ),
     );
 
+    // get all activities of hub module region
+
+    final getHubAct = await dio.get(
+      global.autologinLink + '/module/2021/B-INN-000/PAR-0-1/' + format,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
+
+    // get all activities of hub module contries
+
+    final getHubActFR = await dio.get(
+      global.autologinLink + '/module/2021/B-INN-000/FR-0-1/' + format,
+      options: Options(
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
+
     // Attribute datas to global variables
 
     global.userData = getUserData.data;
@@ -104,6 +136,8 @@ Future<void> getData(context) async {
     global.calendarData = getCalendarData.data;
     global.absencesData = getAbsencesData.data;
     global.notificationsData = getNotifData.data;
+    global.hubAct = getHubAct.data;
+    global.hubActFR = getHubActFR.data;
 
     // Navigate to home page
 
