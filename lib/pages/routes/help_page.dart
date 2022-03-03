@@ -10,25 +10,21 @@ class HelpPage extends StatefulWidget {
 }
 
 class _HelpPageState extends State<HelpPage> {
-
-  Widget displayDevelopperInfo(String name, String pictureUrl)
-  {
-    return (
-      Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image(
-              image: NetworkImage(pictureUrl),
-              width: 60,
-              height: 60,
-            ),
+  Widget displayDevelopperInfo(String name, String pictureUrl) {
+    return (Row(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Image(
+            image: NetworkImage(pictureUrl),
+            width: 60,
+            height: 60,
           ),
-          const SizedBox(width: 8),
-          Text(name),
-        ],
-      )
-    );
+        ),
+        const SizedBox(width: 8),
+        Text(name),
+      ],
+    ));
   }
 
   @override
@@ -68,13 +64,17 @@ class _HelpPageState extends State<HelpPage> {
               children: [
                 Column(
                   children: [
-                    displayDevelopperInfo('Austin-William Lo', 'https://avatars.githubusercontent.com/u/55129304?v=4'),
+                    displayDevelopperInfo('Austin-William Lo',
+                        'https://avatars.githubusercontent.com/u/55129304?v=4'),
                     const SizedBox(height: 10),
-                    displayDevelopperInfo('Chloé Chauvin', 'https://avatars.githubusercontent.com/Nekory23'),
+                    displayDevelopperInfo('Chloé Chauvin',
+                        'https://avatars.githubusercontent.com/Nekory23'),
                     const SizedBox(height: 10),
-                    displayDevelopperInfo('Quentin Treheux', 'https://avatars.githubusercontent.com/LuciferBahamut'),
+                    displayDevelopperInfo('Quentin Treheux',
+                        'https://avatars.githubusercontent.com/LuciferBahamut'),
                     const SizedBox(height: 10),
-                    displayDevelopperInfo('Vincent Pichot', 'https://avatars.githubusercontent.com/Vincent-pichot'),
+                    displayDevelopperInfo('Vincent Pichot',
+                        'https://avatars.githubusercontent.com/Vincent-pichot'),
                   ],
                 )
               ],
